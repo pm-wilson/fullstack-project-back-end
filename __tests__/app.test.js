@@ -20,31 +20,48 @@ describe('app routes', () => {
     return client.end(done);
   });
 
-  test('returns animals', async() => {
+  test('returns destinations', async() => {
 
     const expectation = [
       {
-        'id': 1,
-        'name': 'bessie',
-        'coolfactor': 3,
-        'owner_id': 1
+        id: 1,
+        country: 'Costa Rica',
+        city: 'San Jose',
+        flight_hours: 14,
+        need_passport: 1,
       },
       {
-        'id': 2,
-        'name': 'jumpy',
-        'coolfactor': 4,
-        'owner_id': 1
+        id: 2,
+        country: 'New Zealand',
+        city: 'Auckland',
+        flight_hours: 20,
+        need_passport: 1,
       },
       {
-        'id': 3,
-        'name': 'spot',
-        'coolfactor': 10,
-        'owner_id': 1
+        id: 3,
+        country: 'Japan',
+        city: 'Tokyo',
+        flight_hours: 31,
+        need_passport: 1,
+      },
+      {
+        id: 4,
+        country: 'Switzerland',
+        city: 'Zurich',
+        flight_hours: 15,
+        need_passport: 1,
+      },
+      {
+        id: 5,
+        country: 'United States',
+        city: 'Honolulu',
+        flight_hours: 7,
+        need_passport: 0,
       }
     ];
 
     const data = await fakeRequest(app)
-      .get('/animals')
+      .get('/destinations')
       .expect('Content-Type', /json/)
       .expect(200);
 
