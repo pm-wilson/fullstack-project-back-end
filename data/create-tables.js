@@ -22,7 +22,8 @@ async function run() {
                     country VARCHAR(90) NOT NULL,
                     city VARCHAR(90) NOT NULL,
                     flight_hours INTEGER NOT NULL,
-                    need_passport BOOLEAN NOT NULL
+                    need_passport BOOLEAN NOT NULL,
+                    user_id INTEGER NOT NULL REFERENCES users(id)
             );
         `);
 

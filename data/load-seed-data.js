@@ -27,10 +27,10 @@ async function run() {
     await Promise.all(
       destinations.map(destination => {
         return client.query(`
-                    INSERT INTO destinations (id, country, city, flight_hours, need_passport)
+                    INSERT INTO destinations (country, city, flight_hours, need_passport, user_id)
                     VALUES ($1, $2, $3, $4, $5);
                 `,
-        [destination.id, destination.country, destination.city, destination.flight_hours, destination.need_passport]);
+        [destination.country, destination.city, destination.flight_hours, destination.need_passport, destination.user_id]);
       })
     );
 
