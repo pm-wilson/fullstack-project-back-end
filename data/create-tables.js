@@ -12,18 +12,26 @@ async function run() {
 
     // run a query to create tables
     await client.query(`
-                CREATE TABLE users (
-                    id SERIAL PRIMARY KEY,
-                    email VARCHAR(256) NOT NULL,
-                    hash VARCHAR(512) NOT NULL
-                );           
-                CREATE TABLE destinations (
-                    id SERIAL PRIMARY KEY NOT NULL,
-                    country VARCHAR(90) NOT NULL,
-                    city VARCHAR(90) NOT NULL,
-                    flight_hours INTEGER NOT NULL,
-                    need_passport BOOLEAN NOT NULL,
-                    user_id INTEGER NOT NULL REFERENCES users(id)
+            CREATE TABLE users (
+                id SERIAL PRIMARY KEY,
+                email VARCHAR(256) NOT NULL,
+                hash VARCHAR(512) NOT NULL
+            );
+            CREATE TABLE agents (
+                id SERIAL PRIMARY KEY,
+                agent_name VARCHAR(256) NOT NULL,
+                agent_phone CHAR(10) NOT NULL,
+                agent_email VARCHAR(256) NOT NULL
+            );
+            CREATE TABLE destinations (
+                id SERIAL PRIMARY KEY NOT NULL,
+                country VARCHAR(90) NOT NULL,
+                city VARCHAR(90) NOT NULL,
+                flight_hours INTEGER NOT NULL,
+                need_passport BOOLEAN NOT NULL,
+                map_img VARCHAR(512) NOT NULL,
+                user_id INTEGER NOT NULL REFERENCES users(id),
+                agent_id INTEGER NOT NULL REFERENCES agents(id)
             );
         `);
 
